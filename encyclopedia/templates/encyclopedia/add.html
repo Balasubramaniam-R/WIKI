@@ -1,0 +1,37 @@
+{% extends 'encyclopedia/layout.html' %} 
+
+{% load crispy_forms_tags %}
+
+{% block  title %} 
+     Create 
+{% endblock %} 
+
+{% block body %} 
+    {% if message %}
+       <div class="alert alert-danger" role="alert">
+          {{ message }}
+       </div>
+    {% endif %}
+    <div class="contianer">
+        <div class="row">
+            <div class="col-12">
+                <form class="form-group" action="{% url 'encyclopedia:add' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="text-center p-1 m-1">
+                        <h3>Title</h3>
+                    </div>
+                    {{ form.title|as_crispy_field }}
+                    <div class="text-center p-1">
+                        <h3>Content</h3>
+                    </div>
+                    {{ form.content|as_crispy_field }}
+                    <div class="form-group row">
+                        <div class="form-group col-12 p-2 text-center" style="font-size:large">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

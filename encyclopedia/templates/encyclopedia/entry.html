@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block  body%}
+     {{ content|safe }}
+     {% if not content %}
+        <div class="alert alert-danger text-center" role="alert"><h2>Error! requested page was not found.</h2></div>
+     {% else %} 
+      <form action="{% url 'encyclopedia:edit'%}" method="GET">
+        <div class="text-center p-2">
+            <button class="btn btn-primary" name="edit" value="{{ title }}" type="submit">Edit the content of this page</button>
+         </div>
+      </form>
+     {% endif %}
+{% endblock %}
